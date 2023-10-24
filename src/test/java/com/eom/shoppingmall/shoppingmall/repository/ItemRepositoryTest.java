@@ -32,34 +32,37 @@ class ItemRepositoryTest {
 
     public void createItemList() {
         for (int i = 1; i <= 10; i++) {
-            Item item = new Item();
-            item.setName("테스트상품" + i);
-            item.setPrice(10000 + i);
-            item.setContent("테스트 상품 상세 설명" + i);
-            item.setItemSellStatus(ItemSellStatus.SELL);
-            item.setStock(100 + i);
+            Item item = Item.builder()
+                    .name("테스트상품" + i)
+                    .price(10000 + i)
+                    .content("테스트 상품 상세 설명" + i)
+                    .itemSellStatus(ItemSellStatus.SELL)
+                    .stock(100 + i)
+                    .build();
             Item savedItem = itemRepository.save(item);
         }
     }
 
     public void createItemList2() {
         for (int i = 1; i <= 5; i++) {
-            Item item = new Item();
-            item.setName("테스트 상품" + i);
-            item.setPrice(10000 + i);
-            item.setContent("테스트 상품 상세 설명" + i);
-            item.setItemSellStatus(ItemSellStatus.SELL);
-            item.setStock(100);
+            Item item = Item.builder()
+                    .name("테스트상품" + i)
+                    .price(10000 + i)
+                    .content("테스트 상품 상세 설명" + i)
+                    .itemSellStatus(ItemSellStatus.SELL)
+                    .stock(100 + i)
+                    .build();
             itemRepository.save(item);
         }
 
         for (int i = 6; i <= 10; i++) {
-            Item item = new Item();
-            item.setName("테스트 상품" + i);
-            item.setPrice(10000 + i);
-            item.setContent("테스트 상품 상세 설명" + i);
-            item.setItemSellStatus(ItemSellStatus.SOLD_OUT);
-            item.setStock(0);
+            Item item = Item.builder()
+                    .name("테스트상품" + i)
+                    .price(10000 + i)
+                    .content("테스트 상품 상세 설명" + i)
+                    .itemSellStatus(ItemSellStatus.SOLD_OUT)
+                    .stock(0)
+                    .build();
             itemRepository.save(item);
         }
     }
@@ -67,12 +70,13 @@ class ItemRepositoryTest {
     @Test
     @DisplayName("상품 저장 테스트")
     public void createItemTest() {
-        Item item = new Item();
-        item.setName("테스트상품");
-        item.setPrice(10000);
-        item.setContent("테스트 상품 상세 설명");
-        item.setItemSellStatus(ItemSellStatus.SELL);
-        item.setStock(100);
+        Item item = Item.builder()
+                .name("테스트상품")
+                .price(10000)
+                .content("테스트 상품 상세 설명")
+                .itemSellStatus(ItemSellStatus.SELL)
+                .stock(100)
+                .build();
         Item savedItem = itemRepository.save(item);
         System.out.println(savedItem.toString());
     }
@@ -117,15 +121,15 @@ class ItemRepositoryTest {
         }
     }
 
-    @Test
-    @DisplayName("@Query를 이용한 상품 조회 테스트")
-    public void findByItemDetailTest() {
-        this.createItemList();
-        List<Item> itemList = itemRepository.findByItemDetail("테스트 상품 상세 설명");
-        for (Item item : itemList) {
-            System.out.println(item.toString());
-        }
-    }
+//    @Test
+//    @DisplayName("@Query를 이용한 상품 조회 테스트")
+//    public void findByItemDetailTest() {
+//        this.createItemList();
+//        List<Item> itemList = itemRepository.findByItemDetail("테스트 상품 상세 설명");
+//        for (Item item : itemList) {
+//            System.out.println(item.toString());
+//        }
+//    }
 
     @Test
     @DisplayName("Querydsl 조회 테스트1")

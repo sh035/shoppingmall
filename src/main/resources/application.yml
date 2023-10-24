@@ -18,6 +18,13 @@ spring:
     open-in-view: true
     defer-datasource-initialization: true
 
+  devtools:
+    livereload:
+      enabled: true
+
+  thymeleaf:
+    cache: false
+
 logging:
   level:
     org:
