@@ -19,12 +19,15 @@ public class QMember extends EntityPathBase<Member> {
 
     public static final QMember member = new QMember("member1");
 
-    public final QBaseTime _super = new QBaseTime(this);
+    public final QBaseEntity _super = new QBaseEntity(this);
 
     public final StringPath address = createString("address");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createAt = _super.createAt;
+
+    //inherited
+    public final StringPath createdBy = _super.createdBy;
 
     public final StringPath email = createString("email");
 
@@ -32,6 +35,9 @@ public class QMember extends EntityPathBase<Member> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
+
+    //inherited
+    public final StringPath modifiedBy = _super.modifiedBy;
 
     public final StringPath name = createString("name");
 

@@ -25,6 +25,9 @@ spring:
   thymeleaf:
     cache: false
 
+  main:
+    allow-bean-definition-overriding: true
+
 logging:
   level:
     org:

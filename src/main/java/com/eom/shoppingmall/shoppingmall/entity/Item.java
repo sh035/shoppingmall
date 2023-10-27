@@ -2,13 +2,13 @@ package com.eom.shoppingmall.shoppingmall.entity;
 
 import com.eom.shoppingmall.shoppingmall.enums.ItemSellStatus;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
+@NoArgsConstructor
 @ToString
 @Table(name = "item")
 @Getter
+@Setter
 @Entity
 public class Item extends BaseTime{
 
@@ -40,4 +40,5 @@ public class Item extends BaseTime{
         this.content = content;
         this.itemSellStatus = itemSellStatus;
     }
+
 }
