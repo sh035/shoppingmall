@@ -1,5 +1,6 @@
 package com.eom.shoppingmall.shoppingmall.dto;
 
+import com.eom.shoppingmall.shoppingmall.entity.Item;
 import com.eom.shoppingmall.shoppingmall.enums.ItemSellStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -35,4 +36,12 @@ public class ItemFormDto {
     private List<Long> itemImgIds = new ArrayList<>();
 
     private static ModelMapper modelMapper = new ModelMapper();
+
+    public Item createItem() {
+        return modelMapper.map(this, Item.class);
+    }
+
+    public static ItemFormDto of(Item item) {
+        return modelMapper.map(item, ItemFormDto.class);
+    }
 }

@@ -25,6 +25,11 @@ spring:
   thymeleaf:
     cache: false
 
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 100MB
+
   main:
     allow-bean-definition-overriding: true
 
@@ -34,6 +39,10 @@ logging:
       hibernate:
         SQL: trace
 
+# 상품 이미지 업로드 경로
+itemImgLocation: C:/shop/item
+# 리소스 업로드 경로
+uploadPath: file:///C:/shop/
 
 
 
