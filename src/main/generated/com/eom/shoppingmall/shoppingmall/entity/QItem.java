@@ -19,12 +19,15 @@ public class QItem extends EntityPathBase<Item> {
 
     public static final QItem item = new QItem("item");
 
-    public final QBaseTime _super = new QBaseTime(this);
+    public final QBaseEntity _super = new QBaseEntity(this);
 
     public final StringPath content = createString("content");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createAt = _super.createAt;
+
+    //inherited
+    public final StringPath createdBy = _super.createdBy;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -32,6 +35,9 @@ public class QItem extends EntityPathBase<Item> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
+
+    //inherited
+    public final StringPath modifiedBy = _super.modifiedBy;
 
     public final StringPath name = createString("name");
 

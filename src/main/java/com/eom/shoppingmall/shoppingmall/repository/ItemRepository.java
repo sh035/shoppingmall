@@ -1,6 +1,7 @@
 package com.eom.shoppingmall.shoppingmall.repository;
 
 import com.eom.shoppingmall.shoppingmall.entity.Item;
+import com.eom.shoppingmall.shoppingmall.repository.custom.ItemRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -8,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredicateExecutor<Item> {
+public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredicateExecutor<Item>, ItemRepositoryCustom {
     List<Item> findByName(String name);
 
     List<Item> findByNameOrContent(String name, String content);

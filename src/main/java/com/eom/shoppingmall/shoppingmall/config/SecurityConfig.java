@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .formLogin().disable()
                 .formLogin()
                 .loginPage("/member/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/", true)
                 .usernameParameter("email")
                 .failureUrl("/member/login/error")
                     .and()

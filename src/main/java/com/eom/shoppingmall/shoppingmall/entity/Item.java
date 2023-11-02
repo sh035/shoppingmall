@@ -1,5 +1,6 @@
 package com.eom.shoppingmall.shoppingmall.entity;
 
+import com.eom.shoppingmall.shoppingmall.dto.ItemFormDto;
 import com.eom.shoppingmall.shoppingmall.enums.ItemSellStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +11,7 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-public class Item extends BaseTime{
+public class Item extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +40,14 @@ public class Item extends BaseTime{
         this.stock = stock;
         this.content = content;
         this.itemSellStatus = itemSellStatus;
+    }
+
+    public void updateItem(ItemFormDto itemFormDto) {
+        this.name = itemFormDto.getName();
+        this.price = itemFormDto.getPrice();
+        this.stock = itemFormDto.getStock();
+        this.content = itemFormDto.getContent();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
     }
 
 }
