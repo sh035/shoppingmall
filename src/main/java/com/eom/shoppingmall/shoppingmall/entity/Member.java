@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Entity
 @Setter
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseEntity{
 
     @Id

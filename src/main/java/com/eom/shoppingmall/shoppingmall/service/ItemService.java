@@ -3,6 +3,7 @@ package com.eom.shoppingmall.shoppingmall.service;
 import com.eom.shoppingmall.shoppingmall.dto.ItemFormDto;
 import com.eom.shoppingmall.shoppingmall.dto.ItemImgDto;
 import com.eom.shoppingmall.shoppingmall.dto.ItemSearchDto;
+import com.eom.shoppingmall.shoppingmall.dto.MainItemDto;
 import com.eom.shoppingmall.shoppingmall.entity.Item;
 import com.eom.shoppingmall.shoppingmall.entity.ItemImg;
 import com.eom.shoppingmall.shoppingmall.repository.ItemImgRepository;
@@ -27,18 +28,18 @@ public class ItemService {
     private final ItemImgService itemImgService;
     private final ItemImgRepository itemImgRepository;
 
-    public Long saveItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws Exception{
+    public Long saveItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws Exception {
 
         //상품 등록
         Item item = itemFormDto.createItem();
         itemRepository.save(item);
 
         //이미지 등록
-        for(int i=0;i<itemImgFileList.size();i++){
+        for (int i = 0; i < itemImgFileList.size(); i++) {
             ItemImg itemImg = new ItemImg();
             itemImg.setItem(item);
 
-            if(i == 0)
+            if (i == 0)
                 itemImg.setRepimgYn("Y");
             else
                 itemImg.setRepimgYn("N");
@@ -85,5 +86,10 @@ public class ItemService {
     @Transactional(readOnly = true)
     public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
         return itemRepository.getAdminItemPage(itemSearchDto, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
+        return itemRepository.getMainItemPage(itemSearchDto, pageable);
     }
 }

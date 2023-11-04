@@ -57,9 +57,9 @@
                 <td>
                     <a th:href="'/admin/item/'+${item.id}" th:text="${item.name}"></a>
                 </td>
-                <td th:text="${item.itemSellStatus == T(com.eom.shoppingmall.enums.ItemSellStatus).SELL} ? '판매중' : '품절'"></td>
+                <td th:text="${item.itemSellStatus == T(com.eom.shoppingmall.shoppingmall.enums.ItemSellStatus).SELL} ? '판매중' : '품절'"></td>
                 <td th:text="${item.createdBy}"></td>
-                <td th:text="${item.regTime}"></td>
+                <td th:text="${item.createAt}"></td>
             </tr>
             </tbody>
         </table>

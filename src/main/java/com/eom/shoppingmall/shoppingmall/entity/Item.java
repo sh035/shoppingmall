@@ -2,6 +2,7 @@ package com.eom.shoppingmall.shoppingmall.entity;
 
 import com.eom.shoppingmall.shoppingmall.dto.ItemFormDto;
 import com.eom.shoppingmall.shoppingmall.enums.ItemSellStatus;
+import com.eom.shoppingmall.shoppingmall.exception.OutOfStockException;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -48,6 +49,14 @@ public class Item extends BaseEntity{
         this.stock = itemFormDto.getStock();
         this.content = itemFormDto.getContent();
         this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
+
+    public void removeStock(int stock) {
+        int restStock = this.stock - stock;
+        if (restStock < 0) {
+            throw new OutOfStockException("상품의 재고가 부족합니다. (현재 재고 수량: " + this.stock + ")");
+        }
+        this.stock = restStock;
     }
 
 }
