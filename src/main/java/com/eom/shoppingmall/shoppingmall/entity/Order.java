@@ -54,4 +54,12 @@ public class Order extends BaseTime {
 
         return totalPrice;
     }
+
+    public void cancelOrder() {
+        this.orderStatus = OrderStatus.CANCEL;
+
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
+    }
 }

@@ -6,6 +6,7 @@ import com.eom.shoppingmall.shoppingmall.entity.Member;
 import com.eom.shoppingmall.shoppingmall.entity.Order;
 import com.eom.shoppingmall.shoppingmall.entity.OrderItem;
 import com.eom.shoppingmall.shoppingmall.enums.ItemSellStatus;
+import com.eom.shoppingmall.shoppingmall.enums.OrderStatus;
 import com.eom.shoppingmall.shoppingmall.repository.ItemRepository;
 import com.eom.shoppingmall.shoppingmall.repository.MemberRepository;
 import com.eom.shoppingmall.shoppingmall.repository.OrderRepository;
@@ -63,7 +64,7 @@ class OrderServiceTest {
         orderDto.setCount(10);
         orderDto.setItemId(item.getId());
 
-        Long orderId = orderService.Order(orderDto, member.getEmail());
+        Long orderId = orderService.order(orderDto, member.getEmail());
 
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(EntityNotFoundException::new);
@@ -73,5 +74,24 @@ class OrderServiceTest {
         int totalPrice = orderDto.getCount() * item.getPrice();
 
         assertEquals(totalPrice, order.getTotalPrice());
+    }
+
+    @Test
+    @DisplayName("주문 취소 테스트")
+    public void cancelOrder(){
+        Item item = saveItem();
+        Member member = saveMember();
+
+        OrderDto orderDto = new OrderDto();
+        orderDto.setCount(10);
+        orderDto.setItemId(item.getId());
+        Long orderId = orderService.order(orderDto, member.getEmail());
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(EntityNotFoundException::new);
+        orderService.cancelOrder(orderId);
+
+        assertEquals(OrderStatus.CANCEL, order.getOrderStatus());
+        assertEquals(100, item.getStock());
     }
 }
